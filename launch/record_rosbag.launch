@@ -1,0 +1,11 @@
+<launch>
+
+
+<arg name="rec_name" default="markers.bag"/>
+
+<node name="rosbag_record_position_hold" pkg="rosbag" type="record"
+       args="record -O $(find survey_and_rescue)/$(arg rec_name) --duration=20 --chunksize=10 /whycon/poses" output="screen"/>
+
+<node pkg="survey_and_rescue" type="position_hold_gazebo.py" name="position_hold_gazebo" />
+
+</launch>
