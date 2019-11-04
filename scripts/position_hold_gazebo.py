@@ -53,10 +53,9 @@ class Edrone():
 		self.cmd.rcAUX2 = 1500
 		self.cmd.rcAUX3 = 1500
 		self.cmd.rcAUX4 = 1500
-		# self.cmd.plutoIndex = 0
 
 
-		#initial setting of Kp, Kd and ki for [pitch, roll, throttle]. eg: self.Kp[2] corresponds to Kp value in throttle axis
+		#initial setting of Kp, Kd and ki for [roll, pitch, throttle]. eg: self.Kp[2] corresponds to Kp value in throttle axis
 		#after tuning and computing corresponding PID parameters, change the parameters
 		self.Kp = [0,0,0]
 		self.Ki = [0,0,0]
@@ -72,14 +71,13 @@ class Edrone():
 
 
 
-		# Hint : Add variables for storing previous errors in each axis, like self.prev_values = [0,0,0] where corresponds to [pitch, roll, throttle]
-		#		 Add variables for limiting the values like self.max_values = [1800,1800,1800] corresponding to [pitch, roll, throttle]
-		#													self.min_values = [1200,1200,1200] corresponding to [pitch, roll, throttle]
+		# Hint : Add variables for storing previous errors in each axis, like self.prev_values = [0,0,0] where corresponds to [pitch, roll, throttle]		#		 Add variables for limiting the values like self.max_values = [2000,2000,2000] corresponding to [roll, pitch, throttle]
+		#													self.min_values = [1000,1000,1000] corresponding to [pitch, roll, throttle]
 		#																	You can change the upper limit and lower limit accordingly. 
 		#----------------------------------------------------------------------------------------------------------
 
-		# This is the sample time in which you need to run pid. Choose any time which you seem fit. Remember the stimulation step time is 50 ms
-		self.sample_time = 0.060 # in seconds
+		# # This is the sample time in which you need to run pid. Choose any time which you seem fit. Remember the stimulation step time is 50 ms
+		# self.sample_time = 0.060 # in seconds
 
 
 
@@ -156,9 +154,9 @@ class Edrone():
 	# Callback function for /pid_tuning_altitude
 	# This function gets executed each time when /tune_pid publishes /pid_tuning_altitude
 	def altitude_set_pid(self,alt):
-		self.Kp[0] = alt.Kp * 0.06 # This is just for an example. You can change the fraction value accordingly
-		self.Ki[0] = alt.Ki * 0.008
-		self.Kd[0] = alt.Kd * 0.3
+		self.Kp[2] = alt.Kp * 0.06 # This is just for an example. You can change the fraction value accordingly
+		self.Ki[2] = alt.Ki * 0.008
+		self.Kd[2] = alt.Kd * 0.3
 
 	#----------------------------Define callback function like altitide_set_pid to tune pitch, roll--------------
 
@@ -216,6 +214,6 @@ class Edrone():
 if __name__ == '__main__':
 
 	e_drone = Edrone()
-
+	r = rospy.Rate() #specify rate in Hz based upon your desired PID sampling time, i.e. if desired sample time is 33ms specify rate as 30Hz
 	while not rospy.is_shutdown():
 		e_drone.pid()
