@@ -217,3 +217,4 @@ if __name__ == '__main__':
 	r = rospy.Rate() #specify rate in Hz based upon your desired PID sampling time, i.e. if desired sample time is 33ms specify rate as 30Hz
 	while not rospy.is_shutdown():
 		e_drone.pid()
+		r.sleep()
