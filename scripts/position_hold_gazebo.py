@@ -40,7 +40,7 @@ class Edrone():
 		self.drone_position = [0.0,0.0,0.0]	
 
 		# [x_setpoint, y_setpoint, z_setpoint]
-		self.setpoint = [2,2,10] # whycon marker at the position of the dummy given in the scene. Make the whycon marker associated with position_to_hold dummy renderable and make changes accordingly
+		self.setpoint = [2,2,20] # whycon marker at the position of the dummy given in the scene. Make the whycon marker associated with position_to_hold dummy renderable and make changes accordingly
 
 
 		#Declaring a cmd of message type PlutoMsg and initializing values
@@ -154,7 +154,7 @@ class Edrone():
 	# Callback function for /pid_tuning_altitude
 	# This function gets executed each time when /tune_pid publishes /pid_tuning_altitude
 	def altitude_set_pid(self,alt):
-		self.Kp[2] = alt.Kp * 0.06 # This is just for an example. You can change the fraction value accordingly
+		self.Kp[2] = alt.Kp * 0.06 # This is just for an example. You can change the ratio/fraction value accordingly
 		self.Ki[2] = alt.Ki * 0.008
 		self.Kd[2] = alt.Kd * 0.3
 

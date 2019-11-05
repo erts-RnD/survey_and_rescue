@@ -3,7 +3,8 @@
   </include>
   
   <arg name="name" default="whycon"/>
-  <arg name="targets" default="1"/> 
+  <arg name="targets" default="1"/>
+  <!-- DO NOT CHANGE THE FOLLOWING TWO VALUES  -->
   <arg name="outer_diameter" default=".55"/>
   <arg name="inner_diameter" default=".20"/>
 
