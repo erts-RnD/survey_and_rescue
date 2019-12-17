@@ -1,0 +1,16 @@
+uint8 foodOnboard
+uint8 medOnboard
+uint8 foodDistributed
+uint8 medDistributed
+uint8 rescues
+uint8 incorrectDetections
+uint8 correctDetections
+uint8 redundantDetections
+uint8 correctServices
+uint8 incorrectServices
+uint8 failedServices
+int16 score
+SRBeaconStats currentDetected
+SRBeaconStats totalSucessServiced
+SRBeaconStats currentLit
+SRBeaconStats decisionEvents
