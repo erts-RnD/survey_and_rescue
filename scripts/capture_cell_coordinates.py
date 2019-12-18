@@ -21,7 +21,7 @@ class Record_Coordinates():
 		
 		rospy.Subscriber('/whycon/poses',PoseArray,self.whycon_data)	# Subscribing to topic
 		self.number_of_nodes = 36
-		self.block_name_list = ["A1", "B1", "C1", "D1", "E1", "F1", "A2", "B2", "C2", "D2", "E2", "F2", "A3", "B3", "C3", "D3", "E3", "F3","A4", "B4", "C4", "D4", "E4", "F4", "A5", "B5", "C5", "D5", "E5", "F5", "A6", "B6", "C6", "D6", "E6", "F6"]
+		self.block_name_list = ["A1", "B1", "C1", "D1", "E1", "F1", "F2", "E2", "D2", "C2", "B2", "A2", "A3", "B3", "C3", "D3", "E3", "F3","F4", "E4", "D4", "C4", "B4", "A4", "A5", "B5", "C5", "D5", "E5", "F5", "F6", "E6", "D6", "C6", "B6", "A6"]
 		self.pose_list = []
 		self.current_index = None
 	# Callback for /whycon/poses
@@ -69,33 +69,33 @@ class Record_Coordinates():
 
 	def display_and_lock_whycon_poses(self, index):
 		while True:
-			print("Record the WhyCon coordinate for: "+self.block_name_list[index]+". Press ENTER to lock.\n")
+			print("\n\nRecord the WhyCon coordinate for: "+self.block_name_list[index]+". Press ENTER to lock.\n")
 			t1 = threading.Thread(target=self.keypress_thread , args=())
 			t1.start()
 			while t1.isAlive():
 				sys.stdout.write('\rwhy_x: '+'{0:06.3f}'.format(self.whycon_marker[0])+'   why_y: '+'{0:06.3f}'.format(self.whycon_marker[1])+'   why_z: '+'{0:06.3f}'.format(self.whycon_marker[2]))
 				sys.stdout.flush()
-				backup_whycon_marker = list(self.whycon_marker)
+				whycon_marker_locked = list(self.whycon_marker)
 				time.sleep(0.2)
-			text_input = raw_input("\nYou have chosen the above pose for "+self.block_name_list[index]+".\nPress ENTER to commit, any other key to retake value.")
+			text_input = raw_input("You have chosen the above pose for "+self.block_name_list[index]+". Press ENTER to commit, any other key to retake value.")
 			if not text_input:
-				self.pose_list.append(backup_whycon_marker)
+				self.pose_list.append(whycon_marker_locked)
 				break
 
-
-
-	def input_position_config_to_tsv(self):
+	def input_position_config(self):
 		for i in range(self.number_of_nodes):
 			self.display_and_lock_whycon_poses(i)
-		self.write_config_to_json()
-		# self.write_tsv_config()
-
-	def write_config_to_json(self, file_path = 'square_coords.json'):
+	
+	def write_config_to_json(self, file_path = 'cell_coords.json'):
 		pose_dict = dict(zip(self.block_name_list, self.pose_list))
 		with open(file_path, mode='w') as outfile:
 			json.dump(pose_dict, outfile)
 		print("Recording Successful")
 
 if __name__=="__main__":
-	rec = Record_Coordinates()
-	rec.input_position_config_to_tsv()
+	try:
+		rec = Record_Coordinates()
+		rec.input_position_config()
+		rec.write_config_to_json()
+	except KeyboardInterrupt:
+		print("Recording Config Interrupted")
