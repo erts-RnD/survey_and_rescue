@@ -6,6 +6,6 @@
 <node name="rosbag_record_position_hold" pkg="rosbag" type="record"
        args="record -O $(find survey_and_rescue)/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /whycon/poses" output="screen"/>
 
-<node pkg="survey_and_rescue" type="position_hold_gazebo.py" name="position_hold_gazebo" />
+<node pkg="survey_and_rescue" type="position_hold.py" name="position_hold_gazebo" />
 
 </launch>
