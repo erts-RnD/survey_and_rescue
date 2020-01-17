@@ -16,14 +16,13 @@ class Record_Coordinates():
 
 	def __init__(self):
 		rospy.init_node('whycon_record_nodes',anonymous=False) # initializing a ros node with name marker_detection
-
 		self.whycon_marker = [0,0,0]
-		
 		rospy.Subscriber('/whycon/poses',PoseArray,self.whycon_data)	# Subscribing to topic
 		self.number_of_nodes = 36
 		self.block_name_list = ["A1", "B1", "C1", "D1", "E1", "F1", "F2", "E2", "D2", "C2", "B2", "A2", "A3", "B3", "C3", "D3", "E3", "F3","F4", "E4", "D4", "C4", "B4", "A4", "A5", "B5", "C5", "D5", "E5", "F5", "F6", "E6", "D6", "C6", "B6", "A6"]
 		self.pose_list = []
 		self.current_index = None
+
 	# Callback for /whycon/poses
 	def whycon_data(self,msg):
 		pos_x = round(msg.poses[0].position.x,3)

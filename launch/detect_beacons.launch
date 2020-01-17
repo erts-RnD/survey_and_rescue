@@ -1,0 +1,47 @@
+<launch>
+
+<arg name="duration" default="25"/>
+<arg name="rec_name" default="SR_detection.bag"/>
+
+<!-- Args primarily for the monitoring script -->
+<arg name="package_name" default="survey_and_rescue"/>
+<arg name="path_rel_to_pkg" default="scripts"/>
+<arg name="start_on_base" default="False"/>
+<arg name="start_with_countdown" default="True"/>
+<arg name="countdown" default="1"/>
+<arg name="stats_topic_rate" default="15"/>
+<!-- Max rate has been set to 30, values above that will still publish at 30Hz -->
+<!-- Args for rosserial -->
+<arg name="port" default="/dev/ttyUSB0"/>
+<arg name="baud" default="115200"/>
+
+<arg name="record" default="false"/>
+
+
+<!-- 
+You may move this node to another launch file such as usb_cam_SR.launch, look at the prerequisites.launch file as an example, the limitation here is that pressing Ctrl+C won't turn off the LEDs as even the rosserial node will be killed. Additionally it will reduce the startup time and hence the need for the countdown, thus saving you time.-->
+<node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
+	<param name="~port" value="$(arg port)"/>
+	<param name="~baud" value="$(arg baud)"/>
+</node>
+
+<node pkg="survey_and_rescue" type="monitor.pyc" name="monitor" output="screen">
+	<param name="~start_on_base" value="$(arg start_on_base)"/>
+	<param name="~start_with_countdown" value="$(arg start_with_countdown)"/>
+	<param name="~countdown" value="$(arg countdown)"/>
+	<param name="~package_name" value="$(arg package_name)"/>
+	<param name="~path_rel_to_pkg" value="$(arg path_rel_to_pkg)"/>	
+	<param name="~stats_topic_rate" value="$(arg stats_topic_rate)"/>	
+</node>
+
+<node pkg="survey_and_rescue" type="beacon_detector.py" name="sr_beacon_detector" />
+
+
+<group if="$(arg record)">
+
+	<node name="rosbag_record_beacon_detections" pkg="rosbag" type="record"
+       args="record -O $(find survey_and_rescue)/bag_files/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /stats_sr /detection_info" output="screen"/>
+
+</group>
+
+</launch>

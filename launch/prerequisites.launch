@@ -1,9 +1,20 @@
+<!-- This launch file launches the pre-requisites for the SR theme, that is USB camera, image_proc, whycon node and rosserial connection -->
+
 <launch>
   <!-- Arguments for WhyCon node -->
   <arg name="name" default="whycon"/>
   <arg name="targets" default="1"/>
   <arg name="outer_diameter" default="0.55"/>
   <arg name="inner_diameter" default="0.20"/>
+  <!-- Arguments for rosserial -->
+  <arg name="port" default="/dev/ttyUSB0"/>
+  <arg name="baud" default="115200"/>
+
+
+<node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
+  <param name="~port" value="$(arg port)"/>
+  <param name="~baud" value="$(arg baud)"/>
+</node>
 
   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
     <!-- You may need to change the value of the video_device field,, refer to the document for more details -->
