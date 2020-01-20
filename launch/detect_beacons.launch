@@ -10,7 +10,7 @@
 <arg name="start_with_countdown" default="True"/>
 <arg name="countdown" default="1"/>
 <arg name="stats_topic_rate" default="15"/>
-
+<arg name="num_beacons" default="8"/>
 <arg name="print_time" default="True"/>
 
 <!-- Max rate has been set to 30, values above that will still publish at 30Hz -->
@@ -32,11 +32,11 @@ You may move this node to another launch file such as usb_cam_SR.launch, look at
 	<param name="~start_on_base" value="$(arg start_on_base)"/>
 	<param name="~start_with_countdown" value="$(arg start_with_countdown)"/>
 	<param name="~countdown" value="$(arg countdown)"/>
-	<param name="~countdown" value="$(arg countdown)"/>
 	<param name="~package_name" value="$(arg package_name)"/>
 	<param name="~path_rel_to_pkg" value="$(arg path_rel_to_pkg)"/>	
 	<param name="~stats_topic_rate" value="$(arg stats_topic_rate)"/>
 	<param name="~print_time" value="$(arg print_time)"/>
+	<param name="~num_beacons" value="$(arg num_beacons)"/>
 </node>
 
 <node pkg="survey_and_rescue" type="beacon_detector.py" name="sr_beacon_detector"  output="screen"/>
