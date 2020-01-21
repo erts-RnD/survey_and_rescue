@@ -18,7 +18,7 @@
 
   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
     <!-- You may need to change the value of the video_device field,, refer to the document for more details -->
-    <param name="video_device" value="/dev/video1" />
+    <param name="video_device" value="/dev/video0" />
     <param name="camera_frame_id" value="usb_cam" />
     <param name="io_method" value="mmap"/>
 <!--     ################################################################################
