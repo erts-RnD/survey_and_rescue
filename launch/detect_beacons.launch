@@ -8,15 +8,15 @@
 <arg name="path_rel_to_pkg" default="scripts"/>
 <arg name="start_on_base" default="False"/>
 <arg name="start_with_countdown" default="True"/>
-<arg name="countdown" default="1"/>
+<arg name="countdown" default="5"/>
 <arg name="stats_topic_rate" default="15"/>
 <arg name="num_beacons" default="8"/>
 <arg name="print_time" default="True"/>
 
 <!-- Max rate has been set to 30, values above that will still publish at 30Hz -->
 <!-- Args for rosserial -->
-<arg name="port" default="/dev/ttyUSB0"/>
-<arg name="baud" default="115200"/>
+<!-- <arg name="port" default="/dev/ttyUSB0"/>
+<arg name="baud" default="115200"/> -->
 
 <arg name="record" default="false"/>
 
@@ -28,7 +28,7 @@ You may move this node to another launch file such as usb_cam_SR.launch, look at
 	<param name="~baud" value="$(arg baud)"/>
 </node> -->
 
-<node pkg="survey_and_rescue" type="monitor.py" name="monitor" output="screen">
+<node pkg="survey_and_rescue" type="monitor.pyc" name="monitor" output="screen">
 	<param name="~start_on_base" value="$(arg start_on_base)"/>
 	<param name="~start_with_countdown" value="$(arg start_with_countdown)"/>
 	<param name="~countdown" value="$(arg countdown)"/>
@@ -45,7 +45,7 @@ You may move this node to another launch file such as usb_cam_SR.launch, look at
 <group if="$(arg record)">
 
 	<node name="rosbag_record_beacon_detections" pkg="rosbag" type="record"
-       args="record -O $(find survey_and_rescue)/bag_files/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /stats_sr /detection_info" output="screen"/>
+       args="record -O $(find survey_and_rescue)/bag_files/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /stats_sr /detection_info /decision_info" output="screen"/>
 
 </group>
 
