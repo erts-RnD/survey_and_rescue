@@ -12,6 +12,7 @@
 <arg name="stats_topic_rate" default="15"/>
 <arg name="num_beacons" default="8"/>
 <arg name="print_time" default="True"/>
+<arg name="continuous_hovering" default="True"/>
 
 <!-- Max rate has been set to 30, values above that will still publish at 30Hz -->
 <!-- Args for rosserial -->
@@ -37,6 +38,7 @@ You may move this node to another launch file such as usb_cam_SR.launch, look at
 	<param name="~stats_topic_rate" value="$(arg stats_topic_rate)"/>
 	<param name="~print_time" value="$(arg print_time)"/>
 	<param name="~num_beacons" value="$(arg num_beacons)"/>
+	<param name="~continuous_hovering" value="$(arg continuous_hovering)"/>
 </node>
 
 <node pkg="survey_and_rescue" type="beacon_detector.py" name="sr_beacon_detector"  output="screen"/>
