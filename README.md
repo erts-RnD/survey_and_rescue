@@ -7,8 +7,8 @@ You will be using this package to implement position control and the task logic 
 
 **v1.3.0**
 
-- Added continuous hoverin mode to make the monitor feature complete & compatible with the Rulebook
-- Added missing implementation of redundant detections
+- Added continuous hovering mode to make the monitor feature complete & compatible with the Rulebook
+- Added missing implementation of redundant detections, /detection_info published twice for the same instance of the Beacon now gives a redundant detection the second time.
 - Sending decision_info to location with no beacon or base now leads to /serviced_info FAILURE being sent in addition to earlier versions which only caused stats.incorrectServices to be incremented in /stats_sr and a message being printed.
 - Added strip function to take care of leading and trailing whitespaces
 - The script will no longer evaluate blank lines in .tsv files
