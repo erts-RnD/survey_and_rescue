@@ -3,7 +3,7 @@ Package for implementing the eYRC  2019-20 theme Survey and Rescue
 
 You will be using this package to implement position control and the task logic in further tasks.
 
-**Changelog for monitor.pyc*
+**Changelog for monitor.pyc**
 
 **v1.4.0**
 
