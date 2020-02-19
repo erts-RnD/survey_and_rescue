@@ -3,7 +3,17 @@ Package for implementing the eYRC  2019-20 theme Survey and Rescue
 
 You will be using this package to implement position control and the task logic in further tasks.
 
-**Changelog for monitor.pyc**
+**Changelog for monitor.pyc*
+
+**v1.4.0**
+
+- Fixed bug of cumulative timer not resetting if new message on topic /decision_info is received midway while servicing other Beacons. Thanks to team #7453 for first highlighting this bug.
+- Fixed NoneType bug in updating stats that occured on a edge case.
+
+**v1.3.1**
+
+- Fixed bug in payload_manager, won't execute if no Beacon is selected.
+- Added print statement for Hovering mode when the .pyc file launches
 
 **v1.3.0**
 
