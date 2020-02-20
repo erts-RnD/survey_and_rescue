@@ -7,7 +7,7 @@ You will be using this package to implement position control and the task logic 
 
 **v1.5.0**
 
-- Added formerly abent decisionEvent information. Reflects current valid /decision_info in num form
+- Added formerly absent decisionEvent information. Reflects current valid /decision_info in num form
 - Fixed bug of cumulative timer not resetting if new message on topic /decision_info is received midway while servicing other Beacons. Thanks to team #7453 for first highlighting this bug.
 
 **v1.4.0**
