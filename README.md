@@ -5,9 +5,13 @@ You will be using this package to implement position control and the task logic 
 
 **Changelog for monitor.pyc**
 
+**v1.5.0**
+
+- Added formerly abent decisionEvent information. Reflects current valid /decision_info in num form
+- Fixed bug of cumulative timer not resetting if new message on topic /decision_info is received midway while servicing other Beacons. Thanks to team #7453 for first highlighting this bug.
+
 **v1.4.0**
 
-- Fixed bug of cumulative timer not resetting if new message on topic /decision_info is received midway while servicing other Beacons. Thanks to team #7453 for first highlighting this bug.
 - Fixed NoneType bug in updating stats that occured on a edge case.
 
 **v1.3.1**
