@@ -5,6 +5,12 @@ You will be using this package to implement position control and the task logic 
 
 **Changelog for monitor.pyc**
 
+**v1.5.1**
+
+- Fixed bug of monitor sending FAILURE message on topic /serviced_info on timeout despite SUCCESS earlier in Continuous Mode
+- Monitor now publishes FAILURE on /serviced_info in case of incorrect services or insufficient payload of that type.
+- 180 seconds after the start of the run, the monitor script will publish a message of type on topic /serviced_info with location: BASE and info: END. The monitor will stop recording scores after this point. Refer to the upcoming(*as of 24/2/20*) Task 5 instructions to know what action the quad should take when this message is published.
+
 **v1.5.0**
 
 - Added formerly absent decisionEvent information. Reflects current valid /decision_info in num form
