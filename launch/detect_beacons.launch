@@ -1,13 +1,13 @@
 <launch>
 
-<arg name="duration" default="25"/>
+<arg name="duration" default="200"/>
 <arg name="rec_name" default="SR_detection.bag"/>
 
 <!-- Args primarily for the monitoring script -->
 <arg name="package_name" default="survey_and_rescue"/>
 <arg name="path_rel_to_pkg" default="scripts"/>
-<arg name="start_on_base" default="False"/>
-<arg name="start_with_countdown" default="True"/>
+<arg name="start_on_base" default="True"/>
+<arg name="start_with_countdown" default="False"/>
 <arg name="countdown" default="5"/>
 <arg name="stats_topic_rate" default="15"/>
 <arg name="num_beacons" default="8"/>
@@ -47,8 +47,7 @@ You may move this node to another launch file such as usb_cam_SR.launch, look at
 <group if="$(arg record)">
 
 	<node name="rosbag_record_beacon_detections" pkg="rosbag" type="record"
-       args="record -O $(find survey_and_rescue)/bag_files/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /stats_sr /detection_info /decision_info" output="screen"/>
-
+       args="record -O $(find survey_and_rescue)/bag_files/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /stats_sr /detection_info /decision_info /serviced_info /whycon_poses" output="screen"/>
 </group>
 
 </launch>

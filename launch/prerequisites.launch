@@ -60,12 +60,17 @@
   </node>
 
   <!-- Running image_view node to display WhyCon output -->
-  <node ns = "whycon_display" name="image_view" type="image_view" pkg="image_view" output="screen">
+  <!-- <node ns = "whycon_display" name="image_view" type="image_view" pkg="image_view" output="screen">
       <remap from="image" to="/whycon/image_out"/>
-  </node>
+  </node> -->
 
   <!-- Node to display the output -->
   <!-- <node ns="usb_cam_display" name="image_view" pkg="image_view" type="image_view" output="screen">
     <remap from="image" to="/usb_cam/image_raw"/>
   </node> -->
+
+  <node ns = "usb_cam_rect_display" name="image_view" type="image_view" pkg="image_view" output="screen">
+      <remap from="image" to="/usb_cam/image_rect_color"/>
+  </node>
+
 </launch>

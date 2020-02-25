@@ -3,7 +3,17 @@ Package for implementing the eYRC  2019-20 theme Survey and Rescue
 
 You will be using this package to implement position control and the task logic in further tasks.
 
+**Changelog for launch files**
+
+The *detect_beacons.launch* and prerequistes.launch 
+
 **Changelog for monitor.pyc**
+
+**v1.5.2**
+
+- Fixed bug of monitor sending "SUCCESS" for Base on topic /serviced_info in Continuous Mode.
+- The END message on /serviced_info is sent on Ctrl+C presses as well.
+- This will be the version on which the final task will be based. Please use the custom .pyc files created for the task that you will find along with the Task download.
 
 **v1.5.1**
 
