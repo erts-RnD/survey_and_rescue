@@ -47,7 +47,7 @@ You may move this node to another launch file such as usb_cam_SR.launch, look at
 <group if="$(arg record)">
 
 	<node name="rosbag_record_beacon_detections" pkg="rosbag" type="record"
-       args="record -O $(find survey_and_rescue)/bag_files/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /stats_sr /detection_info /decision_info /serviced_info /whycon_poses" output="screen"/>
+       args="record -O $(find survey_and_rescue)/bag_files/$(arg rec_name) --duration=$(arg duration) --chunksize=10 /stats_sr /detection_info /decision_info /serviced_info /whycon/poses" output="screen"/>
 </group>
 
 </launch>

@@ -5,9 +5,19 @@ You will be using this package to implement position control and the task logic 
 
 **Changelog for launch files**
 
-The *detect_beacons.launch* and prerequistes.launch 
+The *detect_beacons.launch* and *prerequistes.launch* files were updated to reflect their state as required for the final submission.
 
 **Changelog for monitor.pyc**
+
+**v1.5.4**
+
+- Fixed a bug introduced in 1.5.3 that caused LEDs to not turn off on SUCCESS.
+- Introduced functionality for totalSuccessServiced in the /stats_sr message which was not implemented earlier. You can use this at the end of the run to verify your score.
+
+**v1.5.3**
+
+- Fixed a bug that caused incorrect locations of "FAILURE" on the topic /serviced_info when the Beacon's timed out, if the order of the LED modules in LED_Config.tsv was not ascending.
+- Fixed bug of 180 second kill timer in monitor.pyc  being launched as soon as the file was launched as opposed to after the countdown or after the base.
 
 **v1.5.2**
 
